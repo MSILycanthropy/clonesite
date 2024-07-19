@@ -1,1 +1,11 @@
-<%= @member.name %>
+<div>
+  <%= @member.name %>
+
+  <%= member_status_badge(@member) %>
+
+  <%= @member.phone_number&.number || 'None' %>
+  <%= @member.email_address&.address || 'None' %>
+  <%= @member.sex %>
+  <%= @member.pin %>
+  <%= @member.birthday || 'None' %>
+</div>
