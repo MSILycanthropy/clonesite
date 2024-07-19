@@ -11,4 +11,12 @@ module MemberHelper
       member.status
     end
   end
+
+  def member_avatar(member)
+    tag.div(class: "avatar placeholder") do
+      tag.div(class: "bg-neutral text-neutral-content w-28 rounded-full") do
+        tag.span(class: "text-xl") { member.initials }
+      end
+    end
+  end
 end

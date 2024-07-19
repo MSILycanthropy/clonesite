@@ -1,11 +1,69 @@
-<div>
-  <%= @member.name %>
+<div class="min-h-screen w-96 bg-base-300 pl-14 pr-4 -ml-10 pt-10 rounded-tr-2xl rounded-br-2xl">
+  <div class="flex flex-col items-center gap-5">
+    <%= member_avatar(@member) %>
 
-  <%= member_status_badge(@member) %>
+    <div class="space-y-2 text-center">
+      <div class="text-2xl">
+        <%= @member.name %>
+      </div>
+      <%= member_status_badge(@member) %>
+    </div>
+  </div>
 
-  <%= @member.phone_number&.number || 'None' %>
-  <%= @member.email_address&.address || 'None' %>
-  <%= @member.sex %>
-  <%= @member.pin %>
-  <%= @member.birthday || 'None' %>
+  <div class="text-center mt-4">
+    <div class="text-2xl tracking-widest">
+      <%= @member.pin %>
+    </div>
+    <div class="text-xs">
+      Check In PIN
+    </div>
+  </div>
+
+
+  <div class="mt-8">
+    <div class="mb-4 text-lg text-base-content/75">
+      Personal Details
+    </div>
+    <div class="flex justify-between">
+      <div>
+        Phone Number
+      </div>
+      <div>
+        <%= number_to_phone(@member.phone_number&.number) || 'Unknown' %>
+      </div>
+    </div>
+
+    <div class="divider divider-neutral"></div>
+
+    <div class="flex justify-between">
+      <div>
+        Email Address
+      </div>
+      <div>
+        <%= @member.email_address&.address || 'Unknown' %>
+      </div>
+    </div>
+
+    <div class="divider divider-neutral"></div>
+
+    <div class="flex justify-between">
+      <div>
+        Birthday
+      </div>
+      <div>
+        <%= @member.birthday || 'Unknown' %>
+      </div>
+    </div>
+
+    <div class="divider divider-neutral"></div>
+
+    <div class="flex justify-between">
+      <div>
+        Sex
+      </div>
+      <div>
+        <%= @member.sex.titleize || 'Unknown' %>
+      </div>
+    </div>
+  </div>
 </div>
