@@ -19,9 +19,8 @@
     </div>
   </div>
 
-
   <div class="mt-8">
-    <div class="mb-4 text-lg text-base-content/75">
+    <div class="mb-4 text-lg text-base-content/80">
       Personal Details
     </div>
     <div class="flex justify-between">
@@ -62,7 +61,7 @@
         Sex
       </div>
       <div>
-        <%= @member.sex.titleize || 'Unknown' %>
+        <%= @member.sex&.titleize || 'Unknown' %>
       </div>
     </div>
   </div>
