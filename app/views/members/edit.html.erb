@@ -1,0 +1,90 @@
+<%= turbo_frame_tag :member_sidebar do %>
+  <%= form_with model: @member do |f| %>
+    <div class="min-h-screen w-96 bg-base-300 pl-14 pr-4 -ml-10 pt-10 rounded-tr-2xl rounded-br-2xl">
+      <div class="flex flex-col items-center gap-5">
+        <%= member_avatar(@member) %>
+
+        <div class="flex flex-col gap-2 items-center">
+          <div class="join justify-center">
+            <%= f.text_field :first_name, class: 'input join-item w-32 text-2xl' %>
+            <%= f.text_field :last_name, class: 'input join-item w-32 text-2xl' %>
+          </div>
+
+          <label class="flex items-center gap-2 cursor-pointer">
+            <span class="label-text">Active</span>
+            <%= f.check_box :status, { class: 'toggle toggle-success', checked: @member.active? }, "active", "inactive" %>
+          </label>
+        </div>
+      </div>
+      <label class="flex flex-col items-center mt-2">
+        <%= f.number_field :pin, class: 'input text-2xl tracking-widest w-32', maxlength: 4 %>
+
+        <div class="label-text">
+          Check In PIN
+        </div>
+      </label>
+      <div class="flex justify-center join mt-2">
+        <%= link_to member_path, class: "btn btn-sm btn-neutral join-item" do %>
+          <%= icon(:arrow_left, suffix: '16-solid', class: 'size-4') %>
+          Cancel
+        <% end %>
+        <%= f.button class: "btn btn-sm btn-primary join-item" do %>
+          Update
+          <%= icon(:check, suffix: '16-solid', class: 'size-4') %>
+        <% end %>
+      </div>
+      <div class="mt-8">
+        <div class="mb-4 text-lg text-base-content/80">
+          Personal Details
+        </div>
+        <label class="cursor-pointer flex items-center justify-between">
+          <div>
+            Phone Number
+          </div>
+          <div>
+            <%= f.fields_for :phone_number do |pf| %>
+              <%= pf.hidden_field :id %>
+              <%= pf.text_field :number, class: 'input w-32' %>
+            <% end %>
+          </div>
+        </label>
+
+        <div class="divider divider-neutral"></div>
+
+        <label class="cursor-pointer flex items-center justify-between">
+          <div>
+            Email Address
+          </div>
+          <div>
+            <%= f.fields_for :email_address do |ef| %>
+              <%= ef.hidden_field :id %>
+              <%= ef.email_field :address, class: 'input w-40' %>
+            <% end %>
+          </div>
+        </label>
+
+        <div class="divider divider-neutral"></div>
+
+        <label class="cursor-pointer flex items-center justify-between">
+          <div>
+            Birthday
+          </div>
+          <div>
+            <%= f.date_field :birthday, class: 'input' %>
+          </div>
+        </label>
+
+        <div class="divider divider-neutral"></div>
+
+        <label class="cursor-pointer flex items-center justify-between">
+          <div>
+            Sex
+          </div>
+          <div>
+            <%= f.select :sex, Member.sexes.keys.map { |s| [s.titleize, s]}, {}, class: 'select' %>
+          </div>
+        </label>
+      </div>
+    </div>
+  <% end %>
+<% end %>
