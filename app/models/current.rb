@@ -1,3 +1,4 @@
 class Current < ActiveSupport::CurrentAttributes
-  attribute :school, :network
+  attribute :session, :school, :network
+  delegate :user, to: :session, allow_nil: true
 end

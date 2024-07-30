@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Authentication
+
   allow_browser versions: :modern
 
   sets_current_tenant :network
