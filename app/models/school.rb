@@ -1,10 +1,10 @@
 class School < ApplicationRecord
-  simply_the_tenant
+  belongs_to_tenant :network
 
-  has_many :members
-
-  validates_presence_of :name, :subdomain, :timezone, :status
-  validates_uniqueness_of :subdomain
+  validates_presence_of :name, :timezone, :status
 
   enum :status, [ "active", "inactive" ].index_by(&:itself)
+
+  has_many :school_registrations
+  has_many :members, through: :school_registrations
 end

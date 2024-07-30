@@ -1,5 +1,5 @@
 class Member < ApplicationRecord
-  belongs_to_tenant :school
+  belongs_to_tenant :network
 
   validates_presence_of :first_name, :pin, :status
   validates_presence_of :last_name, if: :first_name?
@@ -9,6 +9,9 @@ class Member < ApplicationRecord
 
   has_one :email_address, as: :emailable
   has_one :phone_number, as: :callable
+
+  has_many :school_registrations
+  has_many :schools, through: :school_registrations
 
   accepts_nested_attributes_for :email_address, reject_if: ->(e) { e[:address].blank? }
   accepts_nested_attributes_for :phone_number, reject_if: ->(p) { p[:number].blank? }
