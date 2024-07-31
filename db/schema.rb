@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_07_30_211326) do
+ActiveRecord::Schema[8.0].define(version: 2024_07_30_230632) do
   create_table "email_addresses", force: :cascade do |t|
     t.string "address", null: false
     t.string "emailable_type", null: false
@@ -31,11 +31,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_30_211326) do
     t.string "pin", null: false
     t.date "birthday"
     t.string "status", default: "active"
+    t.integer "network_id"
+    t.index ["network_id"], name: "index_members_on_network_id"
   end
 
   create_table "networks", force: :cascade do |t|
     t.string "name", null: false
-    t.string "subdomain", null: false
     t.string "status", default: "active", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,8 +54,31 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_30_211326) do
     t.index ["network_id"], name: "index_phone_numbers_on_network_id"
   end
 
+  create_table "school_affiliations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "school_id", null: false
+    t.integer "network_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_school_affiliations_on_network_id"
+    t.index ["school_id"], name: "index_school_affiliations_on_school_id"
+    t.index ["user_id"], name: "index_school_affiliations_on_user_id"
+  end
+
+  create_table "school_registrations", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.integer "school_id", null: false
+    t.integer "network_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_school_registrations_on_member_id"
+    t.index ["network_id"], name: "index_school_registrations_on_network_id"
+    t.index ["school_id"], name: "index_school_registrations_on_school_id"
+  end
+
   create_table "schools", force: :cascade do |t|
     t.string "name", null: false
+    t.string "subdomain", null: false
     t.string "timezone", null: false
     t.string "status", default: "active", null: false
     t.datetime "created_at", null: false
@@ -63,7 +87,37 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_30_211326) do
     t.index ["network_id"], name: "index_schools_on_network_id"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "token"
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_sessions_on_token", unique: true
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email_address", null: false
+    t.string "password_digest", null: false
+    t.integer "network_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["network_id"], name: "index_users_on_network_id"
+  end
+
   add_foreign_key "email_addresses", "networks"
+  add_foreign_key "members", "networks"
   add_foreign_key "phone_numbers", "networks"
+  add_foreign_key "school_affiliations", "networks"
+  add_foreign_key "school_affiliations", "schools"
+  add_foreign_key "school_affiliations", "users"
+  add_foreign_key "school_registrations", "members"
+  add_foreign_key "school_registrations", "networks"
+  add_foreign_key "school_registrations", "schools"
   add_foreign_key "schools", "networks"
+  add_foreign_key "sessions", "users"
+  add_foreign_key "users", "networks"
 end

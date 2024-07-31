@@ -1,8 +1,7 @@
 class Network < ApplicationRecord
   simply_the_tenant
 
-  validates_presence_of :subdomain, :name
-  validates_uniqueness_of :subdomain
+  validates_presence_of :name
 
   enum :status, [ "active", "inactive" ].index_by(&:itself)
 end

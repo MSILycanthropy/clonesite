@@ -2,11 +2,14 @@ module Authentication
   extend ActiveSupport::Concern
 
   included do
-    before_action :require_authentication
     helper_method :authenticated?
   end
 
   class_methods do
+    def requires_authentication
+      before_action :require_authentication
+    end
+
     def allow_unauthenticated_access(**options)
       skip_before_action :require_authentication, **options
     end
@@ -19,7 +22,9 @@ module Authentication
   end
 
   def require_authentication
-    resume_session || request_authentication
+    SimplyTheTenant.with_global_access do
+      resume_session || request_authentication
+    end
   end
 
 
@@ -41,6 +46,7 @@ module Authentication
     redirect_to new_session_url
   end
 
+  # TODO: Probably ensure this goes to the right place.
   def after_authentication_url
     session.delete(:return_to_after_authenticating) || root_url
   end

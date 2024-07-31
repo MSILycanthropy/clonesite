@@ -1,3 +1,3 @@
-class DashboardController < ApplicationController
+class DashboardController < SchoolBaseController
   def show; end
 end

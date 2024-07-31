@@ -7,4 +7,7 @@ class School < ApplicationRecord
 
   has_many :school_registrations
   has_many :members, through: :school_registrations
+
+  has_many :school_affiliations
+  has_many :uesrs, through: :school_affiliations
 end

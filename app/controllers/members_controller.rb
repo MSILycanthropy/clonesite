@@ -1,4 +1,4 @@
-class MembersController < ApplicationController
+class MembersController < SchoolBaseController
   before_action :set_members, only: :index
   before_action :set_member, only: [ :show, :edit, :update ]
 
