@@ -15,9 +15,11 @@ class SchoolBaseController < ApplicationController
 
   def set_current_school
     Current.school = if Rails.env.development?
-      School.last
+      Current.user.schools.last
     else
-      School.find_by!(subdomain: tenant_subdomain)
+      Current.user.schools.find_by!(subdomain: tenant_subdomain)
     end
+
+    render file: "public/404.html", status: :unauthorized, layout: false if Current.school.nil?
   end
 end
