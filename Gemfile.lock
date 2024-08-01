@@ -288,6 +288,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shopify-money (2.2.2)
     simply_the_tenant (0.2.1)
       rails (>= 7.1)
     sqlite3 (2.0.3-aarch64-linux-gnu)
@@ -367,6 +368,7 @@ DEPENDENCIES
   rails!
   rubocop-rails-omakase
   selenium-webdriver
+  shopify-money
   simply_the_tenant
   sqlite3 (>= 1.4)
   stimulus-rails

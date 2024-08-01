@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_07_30_230632) do
+ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
   create_table "email_addresses", force: :cascade do |t|
     t.string "address", null: false
     t.string "emailable_type", null: false
@@ -33,6 +33,27 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_30_230632) do
     t.string "status", default: "active"
     t.integer "network_id"
     t.index ["network_id"], name: "index_members_on_network_id"
+  end
+
+  create_table "membership_templates", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "trial", default: false, null: false
+    t.string "end_behavior", default: "cancel", null: false
+    t.string "duration_type", default: "ongoing", null: false
+    t.integer "term_length"
+    t.string "term_interval"
+    t.string "billing_type", default: "recurring", null: false
+    t.decimal "price", precision: 21, scale: 3, default: "0.0", null: false
+    t.decimal "late_fee", precision: 21, scale: 3, default: "0.0", null: false
+    t.string "attendance_type", default: "unlimited", null: false
+    t.integer "attendance_amount"
+    t.string "attendance_interval"
+    t.integer "network_id", null: false
+    t.integer "school_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_membership_templates_on_network_id"
+    t.index ["school_id"], name: "index_membership_templates_on_school_id"
   end
 
   create_table "networks", force: :cascade do |t|
@@ -81,6 +102,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_30_230632) do
     t.string "subdomain", null: false
     t.string "timezone", null: false
     t.string "status", default: "active", null: false
+    t.string "currency", limit: 3, default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "network_id"
@@ -110,6 +132,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_30_230632) do
 
   add_foreign_key "email_addresses", "networks"
   add_foreign_key "members", "networks"
+  add_foreign_key "membership_templates", "networks"
+  add_foreign_key "membership_templates", "schools"
   add_foreign_key "phone_numbers", "networks"
   add_foreign_key "school_affiliations", "networks"
   add_foreign_key "school_affiliations", "schools"

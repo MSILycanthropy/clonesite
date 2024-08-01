@@ -5,6 +5,9 @@ class SchoolBaseController < ApplicationController
 
   before_action :set_current_school
 
+  around_action :with_timezone
+  around_action :with_currency
+
   private
 
   def find_tenant_by_subdomain
