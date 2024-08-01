@@ -37,7 +37,7 @@
         <%= icon(:presentation_chart_line, class: 'size-6') %>
         <div>Marketing</div>
       <% end %>
-      <%= link_to root_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50" do %>
+      <%= link_to membership_templates_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50" do %>
         <%= icon(:cog_6_tooth, class: 'size-6') %>
         <div>Settings</div>
       <% end %>
@@ -55,6 +55,11 @@
         <header>
           <%= yield :header %>
         </header>
+      <% end %>
+      <% if content_for?(:extra_sidebar) %>
+        <aside>
+          <%= yield :extra_sidebar %>
+        </aside>
       <% end %>
       <main class="container">
         <%= yield %>

@@ -7,10 +7,10 @@ class Member < ApplicationRecord
   enum :status, [ "active", "inactive" ].index_by(&:itself)
   enum :sex, [ "male", "female", "other" ].index_by(&:itself)
 
-  has_one :email_address, as: :emailable
-  has_one :phone_number, as: :callable
+  has_one :email_address, as: :emailable, dependent: :destroy
+  has_one :phone_number, as: :callable, dependent: :destroy
 
-  has_many :school_registrations
+  has_many :school_registrations, dependent: :destroy
   has_many :schools, through: :school_registrations
 
   accepts_nested_attributes_for :email_address, reject_if: ->(e) { e[:address].blank? }
