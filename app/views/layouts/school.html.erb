@@ -19,7 +19,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body class="flex">
+  <body>
     <aside class="fixed top-0 h-screen w-24 bg-neutral text-neutral-content rounded-tr-2xl rounded-br-2xl divide-y divide-neutral-content/25 overflow-hidden z-10">
       <%= link_to root_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50" do %>
         <%= icon(:home, class: 'size-6') %>
@@ -50,18 +50,16 @@
         <div>Log Out</div>
       <% end %>
     </aside>
+    <% if content_for?(:header) %>
+      <%= yield :header %>
+    <% end %>
     <div class="ml-24">
-      <% if content_for?(:header) %>
-        <header>
-          <%= yield :header %>
-        </header>
-      <% end %>
       <% if content_for?(:extra_sidebar) %>
         <aside>
           <%= yield :extra_sidebar %>
         </aside>
       <% end %>
-      <main class="container">
+      <main class="container mx-auto px-4">
         <%= yield %>
       </main>
     </div>

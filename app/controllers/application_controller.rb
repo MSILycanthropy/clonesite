@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   end
 
   def with_currency
-    Money.with_currency(Current.school.currency) { yield }
+    currency = Money::Currency.new(Current.school.currency)
+
+    Money.with_currency(currency) { yield }
   end
 end

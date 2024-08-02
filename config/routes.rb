@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :members
 
+  resources :membership_templates
+
   # Defines the root path route ("/")
   root "dashboard#show"
 end

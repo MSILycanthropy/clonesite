@@ -1,0 +1,45 @@
+<tr>
+  <td>
+    <div>
+      <%= membership_template.name %>
+    </div>
+    <div class="text-sm text-neutral-content/75">
+      <% if membership_template.ongoing_duration? %>
+        Ongoing
+      <% else %>
+        TODO: limited
+      <% end %>
+    </div>
+  </td>
+  <td>
+    <% if membership_template.billing_free? %>
+      Free
+    <% else %>
+      <div>
+        <%= format_money(membership_template.price) %>
+      </div>
+
+      <% if membership_template.late_fee > 0 %>
+        <div class="text-sm text-neutral-content/75">
+          +<%= format_money(membership_template.late_fee) %> late fee
+        </div>
+      <% end %>
+    <% end %>
+  </td>
+  <td><%= membership_template.attendance_type %></td>
+  <td class="text-center">0</td>
+  <td class="text-center">0</td>
+  <td>
+    <div class="flex items-center gap-2">
+      <button class="btn btn-sm btn-circle btn-secondary">
+        <%= icon(:pencil, suffix: "16-solid", class: 'size-4') %>
+      </button>
+      <button class="btn btn-sm btn-circle btn-error">
+        <%= icon(:trash, suffix: "16-solid", class: 'size-4') %>
+      </button>
+      <button class="btn btn-sm btn-circle btn-accent">
+        <%= icon(:document_duplicate, suffix: "16-solid", class: 'size-4') %>
+      </button>
+    </div>
+  </td>
+</tr>

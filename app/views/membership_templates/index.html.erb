@@ -1,1 +1,24 @@
-memberships
+<div class="bg-base-300 rounded-3xl overflow-hidden p-4 mt-8">
+  <div class="text-base-content text-xl pb-3 flex justify-between">
+    <div>Membership Templates</div>
+    <button class="btn btn-sm btn-primary">
+      Add New
+
+      <%= icon(:plus, suffix: "16-solid", class: 'size-4') %>
+    </button>
+  </div>
+
+  <div class="bg-neutral rounded-xl">
+    <% if @membership_templates.any? %>
+      <%= render 'membership_templates', membership_templates: @membership_templates %>
+    <% else %>
+      <div class="flex flex-col items-center py-4">
+        <%= icon(:user_group, class: 'size-12') %>
+
+        <div>
+          No Membership Templates Found
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
