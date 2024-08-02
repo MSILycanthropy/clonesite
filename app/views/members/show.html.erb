@@ -1,5 +1,9 @@
-<%= content_for :extra_sidebar do %>
-  <%= turbo_frame_tag :member_sidebar do %>
+<%= content_for :extra_sidebar
+
+ do %>
+  <%= turbo_frame_tag :member_sidebar
+
+ do %>
     <div class="min-h-screen w-96 bg-base-300 pl-14 pr-4 -ml-10 pt-10 rounded-tr-2xl rounded-br-2xl">
       <div class="flex flex-col items-center gap-5">
         <%= member_avatar(@member) %>
@@ -20,9 +24,11 @@
         </div>
       </div>
       <div class="flex justify-center mt-2">
-        <%= link_to edit_member_path, class: "btn btn-sm btn-primary" do %>
+        <%= link_to edit_member_path, class: "btn btn-sm btn-primary"
+
+ do %>
           Edit
-          <%= icon(:pencil, suffix: '16-solid', class: 'size-4') %>
+          <%= icon(:pencil, suffix: "16-solid", class: "size-4") %>
         <% end %>
       </div>
       <div class="mt-8">
@@ -34,7 +40,7 @@
             Phone Number
           </div>
           <div>
-            <%= number_to_phone(@member.phone_number&.number) || 'Unknown' %>
+            <%= number_to_phone(@member.phone_number&.number) || "Unknown" %>
           </div>
         </div>
 
@@ -45,7 +51,7 @@
             Email Address
           </div>
           <div>
-            <%= @member.email_address&.address || 'Unknown' %>
+            <%= @member.email_address&.address || "Unknown" %>
           </div>
         </div>
 
@@ -56,7 +62,7 @@
             Birthday
           </div>
           <div>
-            <%= @member.birthday || 'Unknown' %>
+            <%= @member.birthday || "Unknown" %>
           </div>
         </div>
 
@@ -67,7 +73,7 @@
             Sex
           </div>
           <div>
-            <%= @member.sex&.titleize || 'Unknown' %>
+            <%= @member.sex&.titleize || "Unknown" %>
           </div>
         </div>
       </div>

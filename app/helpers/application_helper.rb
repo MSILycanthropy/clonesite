@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include BetterHtml::Helpers
+
   def format_money(number, currency: nil)
     currency ||= Money.current_currency
 

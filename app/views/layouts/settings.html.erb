@@ -1,19 +1,21 @@
-<%= content_for :header do %>
+<%= content_for :header
+
+ do %>
   <header class="bg-base-300 pt-3">
     <div class="ml-24">
       <div class="ml-4 flex items-center gap-3">
-        <%= icon(:cog_6_tooth, class: 'size-8') %>
+        <%= icon(:cog_6_tooth, class: "size-8") %>
         <div class="text-xl font-semibold tracking-wide">
           Settings
         </div>
       </div>
 
       <div role="tablist" class="tabs tabs-lifted w-fit mt-2 ml-4">
-        <%= tab_link_to 'Membership Templates', membership_templates_path %>
-        <%= tab_link_to 'Other', '/' %>
+        <%= tab_link_to "Membership Templates", membership_templates_path %>
+        <%= tab_link_to "Other", "/" %>
       </div>
     </div>
   </header>
 <% end %>
 
-<%= render template: 'layouts/school' %>
+<%= render template: "layouts/school" %>
