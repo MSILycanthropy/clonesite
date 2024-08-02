@@ -1,9 +1,5 @@
-<%= content_for :extra_sidebar
-
- do %>
-  <%= turbo_frame_tag :member_sidebar
-
- do %>
+<%= content_for :extra_sidebar do %>
+  <%= turbo_frame_tag :member_sidebar do %>
     <div class="min-h-screen w-96 bg-base-300 pl-14 pr-4 -ml-10 pt-10 rounded-tr-2xl rounded-br-2xl">
       <div class="flex flex-col items-center gap-5">
         <%= member_avatar(@member) %>
@@ -24,9 +20,7 @@
         </div>
       </div>
       <div class="flex justify-center mt-2">
-        <%= link_to edit_member_path, class: "btn btn-sm btn-primary"
-
- do %>
+        <%= link_to edit_member_path, class: "btn btn-sm btn-primary" do %>
           Edit
           <%= icon(:pencil, suffix: "16-solid", class: "size-4") %>
         <% end %>

@@ -21,45 +21,31 @@
 
   <body>
     <aside class="fixed top-0 h-screen w-24 bg-neutral text-neutral-content rounded-tr-2xl rounded-br-2xl divide-y divide-neutral-content/25 overflow-hidden z-10">
-      <%= link_to root_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50"
-
- do %>
+      <%= link_to root_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50" do %>
         <%= icon(:home, class: "size-6") %>
         <div>Dashboard</div>
       <% end %>
-      <%= link_to members_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50"
-
- do %>
+      <%= link_to members_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50" do %>
         <%= icon(:users, class: "size-6") %>
         <div>Members</div>
       <% end %>
-      <%= link_to root_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50"
-
- do %>
+      <%= link_to root_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50" do %>
         <%= icon(:building_library, class: "size-6") %>
         <div>Finances</div>
       <% end %>
-      <%= link_to root_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50"
-
- do %>
+      <%= link_to root_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50" do %>
         <%= icon(:presentation_chart_line, class: "size-6") %>
         <div>Marketing</div>
       <% end %>
-      <%= link_to membership_templates_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50"
-
- do %>
+      <%= link_to membership_templates_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50" do %>
         <%= icon(:cog_6_tooth, class: "size-6") %>
         <div>Settings</div>
       <% end %>
-      <%= link_to root_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50"
-
- do %>
+      <%= link_to root_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50" do %>
         <%= icon(:device_tablet, class: "size-6") %>
         <div>Kiosk</div>
       <% end %>
-      <%= link_to session_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50", data: { turbo_method: :delete }
-
- do %>
+      <%= link_to session_path, class: "flex flex-col items-center py-6 px-3 transition-all hover:bg-base-100/50", data: { turbo_method: :delete } do %>
         <%= icon(:arrow_right_start_on_rectangle, class: "size-6") %>
         <div>Log Out</div>
       <% end %>
