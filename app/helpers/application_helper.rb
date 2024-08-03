@@ -12,8 +12,16 @@ module ApplicationHelper
   def tab_link_to(name = nil, path = nil)
     classes = [ "tab" ]
 
-    classes << "tab-active" if current_page?(path)
+    classes << "tab-active" if path_from_controller?(path)
 
     link_to name, path, role: :tab, class: classes
+  end
+
+  private
+
+  def path_from_controller?(path = nil)
+    path_controller = Rails.application.routes.recognize_path(path)[:controller]
+
+    controller_name == path_controller
   end
 end

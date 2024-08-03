@@ -1,14 +1,15 @@
-<div class="bg-base-300 rounded-3xl overflow-hidden p-4 mt-8">
+<div class="panel mt-8">
   <div class="text-base-content text-xl pb-3 flex justify-between">
     <div>Membership Templates</div>
-    <button class="btn btn-sm btn-primary">
+
+    <%= link_to new_membership_template_path, class: "btn btn-sm btn-primary" do %>
       Add New
 
       <%= icon(:plus, suffix: "16-solid", class: "size-4") %>
-    </button>
+    <% end %>
   </div>
 
-  <div class="bg-neutral rounded-xl">
+  <div class="panel">
     <% if @membership_templates.any? %>
       <%= render "membership_templates", membership_templates: @membership_templates %>
     <% else %>

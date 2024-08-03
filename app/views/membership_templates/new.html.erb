@@ -1,0 +1,34 @@
+<div class="panel mt-8 max-w-5xl mx-auto">
+  <div class="text-base-content text-xl pb-3 flex gap-3">
+    <%= link_to :back, class: "btn btn-ghost btn-sm" do %>
+      <%= icon(:arrow_left, class: "size-6") %>
+    <% end %>
+    <div>New Membership Template</div>
+  </div>
+
+  <div class="panel">
+    <%= form_with model: @membership_template do |f| %>
+      <div class="join">
+        <% [ "individual", "trial" ].each do |type| %>
+          <%= f.radio_button :trial, type == "trial", class: "join-item btn btn-sm", aria: { label: type.titleize } %>
+        <% end %>
+      </div>
+
+      <div class="panel">
+        <div>
+          <%= f.label :name, class: "label required" %>
+          <%= f.text_field :name, class: "input" %>
+        </div>
+        <div class="join">
+          <% MembershipTemplate.duration_types.keys.each do |duration_type| %>
+            <%= f.radio_button :duration_type, duration_type, class: "join-item btn btn-sm", aria: { label: duration_type } %>
+          <% end %>
+        </div>
+
+        <div>
+          <%= f.number_field :price, class: "input" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
