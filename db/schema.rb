@@ -45,11 +45,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
     t.string "billing_type", default: "recurring", null: false
     t.decimal "price", precision: 21, scale: 3, default: "0.0", null: false
     t.decimal "late_fee", precision: 21, scale: 3, default: "0.0", null: false
+    t.decimal "registration_fee", precision: 21, scale: 3, default: "0.0", null: false
+    t.integer "recurring_billing_length"
+    t.string "recurring_billing_interval"
+    t.integer "recurring_billing_payments"
     t.string "attendance_type", default: "unlimited", null: false
     t.integer "attendance_amount"
     t.string "attendance_interval"
     t.integer "network_id", null: false
-    t.integer "school_id", null: false
+    t.integer "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["network_id"], name: "index_membership_templates_on_network_id"

@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ToggleVisibilityController from "./toggle_visibility_controller"
+application.register("toggle-visibility", ToggleVisibilityController)
