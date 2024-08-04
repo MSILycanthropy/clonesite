@@ -8,7 +8,7 @@
 
   <%= form_with model: @membership_template do |f| %>
     <div class="space-y-4">
-      <div class="panel" data-controller="toggle-visibility" data-toggle-visibility-hidden-value="false" >
+      <div class="panel" data-controller="visibility" data-visibility-hidden-value="false" >
         <div class="font-semibold text-lg mb-2">
           Details
         </div>
@@ -39,14 +39,14 @@
               </span>
               <div class="join">
                 <% MembershipTemplate.billing_types.keys.each do |billing_type| %>
-                  <% data = billing_type == "free" ? { action: "toggle-visibility#hide" } : { action: "toggle-visibility#show" } %>
+                  <% data = billing_type == "free" ? { action: "visibility#hide" } : { action: "visibility#show" } %>
                   <%= f.radio_button :billing_type, billing_type, class: "join-item btn btn-sm", aria: { label: t("billing_types.#{billing_type}") }, data: %>
                 <% end %>
               </div>
             </div>
           </div>
 
-          <div class="panel !pt-3" data-toggle-visibility-target="container">
+          <div class="panel !pt-3" data-visibility-target="container">
             <div>
               <%= f.label :price, "Price", class: "label required" %>
               <div class="flex items-center gap-1">
@@ -85,15 +85,15 @@
           Duration
         </div>
 
-        <div class="panel" data-controller="toggle-visibility">
+        <div class="panel" data-controller="visibility">
           <div class="join">
             <% MembershipTemplate.duration_types.keys.each do |duration_type| %>
-              <% data = duration_type == "limited" ? { action: "toggle-visibility#show" } : { action: "toggle-visibility#hide" } %>
+              <% data = duration_type == "limited" ? { action: "visibility#show" } : { action: "visibility#hide" } %>
               <%= f.radio_button :duration_type, duration_type, class: "join-item btn btn-sm", aria: { label: duration_type }, data: %>
             <% end %>
           </div>
 
-          <div data-toggle-visibility-target="container">
+          <div data-visibility-target="container">
             content
           </div>
         </div>
