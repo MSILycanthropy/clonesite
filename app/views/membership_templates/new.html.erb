@@ -40,6 +40,7 @@
               <div class="join">
                 <% MembershipTemplate.billing_types.keys.each do |billing_type| %>
                   <% data = billing_type == "free" ? { action: "visibility#hide" } : { action: "visibility#show" } %>
+                  <% data[:action] += billing_type == "recurring" ? " visibility#showAlternate" : " visibility#hideAlternate" %>
                   <%= f.radio_button :billing_type, billing_type, class: "join-item btn btn-sm", aria: { label: t("billing_types.#{billing_type}") }, data: %>
                 <% end %>
               </div>
@@ -55,7 +56,7 @@
               </div>
             </div>
 
-            <div class="flex gap-1 items-center">
+            <div class="flex gap-1 items-center" data-visibility-target="alternate">
               <span>Every</span>
               <%= f.number_field :recurring_billing_length, class: "input input-bordered max-w-11" %>
               <%= f.select :recurring_billing_interval, [ "m", "y", "d" ], {}, class: "select select-bordered" %>
