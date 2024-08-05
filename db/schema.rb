@@ -46,6 +46,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
     t.decimal "price", precision: 21, scale: 3, default: "0.0", null: false
     t.decimal "late_fee", precision: 21, scale: 3, default: "0.0", null: false
     t.decimal "registration_fee", precision: 21, scale: 3, default: "0.0", null: false
+    t.decimal "cancellation_fee", precision: 21, scale: 3, default: "0.0", null: false
     t.integer "recurring_billing_length"
     t.string "recurring_billing_interval"
     t.integer "recurring_billing_payments"

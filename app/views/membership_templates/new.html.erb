@@ -7,8 +7,8 @@
   </div>
 
   <%= form_with model: @membership_template do |f| %>
-    <div class="space-y-4">
-      <div class="panel" data-controller="visibility" data-visibility-hidden-value="false" >
+    <div data-controller="visibility" data-visibility-hidden-value="false" class="space-y-4">
+      <div class="panel">
         <div class="font-semibold text-lg mb-2">
           Details
         </div>
@@ -46,36 +46,45 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div class="panel !pt-3" data-visibility-target="container">
-            <div>
-              <%= f.label :price, "Price", class: "label required" %>
-              <div class="flex items-center gap-1">
-                <span><%= Money.current_currency.symbol %></span>
-                <%= f.number_field :price, step: "0.01", class: "input input-bordered w-20" %>
-              </div>
+      <div class="panel !pt-3" data-visibility-target="container">
+        <div class="font-semibold text-lg mb-2">
+          Pricing
+        </div>
+
+        <div class="panel flex flex-wrap gap-8 items-center">
+          <div>
+            <%= f.label :price, "Price", class: "label required" %>
+            <div class="flex items-center gap-1">
+              <span><%= Money.current_currency.symbol %></span>
+              <%= f.number_field :price, step: "0.01", class: "input input-bordered w-20" %>
             </div>
+          </div>
 
-            <div class="flex gap-1 items-center" data-visibility-target="alternate">
+          <div data-visibility-target="alternate">
+            <span class="label">Frequency</span>
+            <div class="flex gap-1 items-center">
               <span>Every</span>
               <%= f.number_field :recurring_billing_length, class: "input input-bordered max-w-11" %>
               <%= f.select :recurring_billing_interval, [ "m", "y", "d" ], {}, class: "select select-bordered" %>
             </div>
+          </div>
 
-            <div>
-              <%= f.label :late_fee, "Late Fee", class: "label" %>
-              <div class="flex items-center gap-1">
-                <span><%= Money.current_currency.symbol %></span>
-                <%= f.number_field :late_fee, step: "0.01",  class: "input input-bordered w-20" %>
-              </div>
+          <div>
+            <%= f.label :late_fee, "Late Fee", class: "label" %>
+            <div class="flex items-center gap-1">
+              <span><%= Money.current_currency.symbol %></span>
+              <%= f.number_field :late_fee, step: "0.01",  class: "input input-bordered w-20" %>
             </div>
+          </div>
 
-            <div>
-              <%= f.label :registration_fee, "Registration Fee", class: "label" %>
-              <div class="flex items-center gap-1">
-                <span><%= Money.current_currency.symbol %></span>
-                <%= f.number_field :registration_fee, step: "0.01",  class: "input input-bordered w-20" %>
-              </div>
+          <div>
+            <%= f.label :registration_fee, "Registration Fee", class: "label" %>
+            <div class="flex items-center gap-1">
+              <span><%= Money.current_currency.symbol %></span>
+              <%= f.number_field :registration_fee, step: "0.01",  class: "input input-bordered w-20" %>
             </div>
           </div>
         </div>

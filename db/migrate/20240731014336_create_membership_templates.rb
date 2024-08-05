@@ -11,6 +11,7 @@ class CreateMembershipTemplates < ActiveRecord::Migration[8.0]
       t.decimal :price, null: false, precision: 21, scale: 3, default: 0
       t.decimal :late_fee, null: false, precision: 21, scale: 3, default: 0
       t.decimal :registration_fee, null: false, precision: 21, scale: 3, default: 0
+      t.decimal :cancellation_fee, null: false, precision: 21, scale: 3, default: 0
       t.integer :recurring_billing_length
       t.string :recurring_billing_interval
       t.integer :recurring_billing_payments

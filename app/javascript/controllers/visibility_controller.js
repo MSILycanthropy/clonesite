@@ -22,12 +22,22 @@ export default class extends Controller {
   }
 
   hiddenValueChanged(value) {
-    this.containerTargets.forEach((container) => (container.hidden = value));
+    this.#toggleAll(this.containerTargets, value);
   }
 
   alternateHiddenValueChanged(value) {
-    console.log(value);
+    this.#toggleAll(this.alternateTargets, value);
+  }
 
-    this.alternateTargets.forEach((alternate) => (alternate.hidden = value));
+  #toggleAll(elements, value) {
+    elements.forEach((element) => {
+      element.hidden = value;
+
+      this.#fieldsWithin(element).forEach((input) => (input.disabled = value));
+    });
+  }
+
+  #fieldsWithin(element) {
+    return Array.from(element.querySelectorAll("input")).concat(Array.from(element.querySelectorAll("select")));
   }
 }
