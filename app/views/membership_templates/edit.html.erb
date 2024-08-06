@@ -3,7 +3,7 @@
     <%= link_to :back, class: "btn btn-ghost btn-sm" do %>
       <%= icon(:arrow_left, class: "size-6") %>
     <% end %>
-    <div>New Membership Template</div>
+    <div>Edit <%= @membership_template.name %></div>
   </div>
 
   <%= render 'membership_templates/form', membership_template: @membership_template %>

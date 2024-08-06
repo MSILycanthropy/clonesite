@@ -1,8 +1,6 @@
 class MembershipTemplate < ApplicationRecord
   belongs_to_tenant :network
 
-  belongs_to :school
-
   validates_presence_of :name
   validates_presence_of :price, unless: :billing_free?
   validates_presence_of :term_length, if: :limited_duration?

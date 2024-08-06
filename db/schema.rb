@@ -54,11 +54,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
     t.integer "attendance_amount"
     t.string "attendance_interval"
     t.integer "network_id", null: false
-    t.integer "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["network_id"], name: "index_membership_templates_on_network_id"
-    t.index ["school_id"], name: "index_membership_templates_on_school_id"
   end
 
   create_table "networks", force: :cascade do |t|
@@ -138,7 +136,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
   add_foreign_key "email_addresses", "networks"
   add_foreign_key "members", "networks"
   add_foreign_key "membership_templates", "networks"
-  add_foreign_key "membership_templates", "schools"
   add_foreign_key "phone_numbers", "networks"
   add_foreign_key "school_affiliations", "networks"
   add_foreign_key "school_affiliations", "schools"

@@ -20,7 +20,6 @@ class CreateMembershipTemplates < ActiveRecord::Migration[8.0]
       t.string :attendance_interval
 
       t.references :network, null: false, foreign_key: true
-      t.references :school, foreign_key: true
 
       t.timestamps
     end

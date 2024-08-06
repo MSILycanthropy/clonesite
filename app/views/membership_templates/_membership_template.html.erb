@@ -1,3 +1,5 @@
+<%# locals: (membership_template:) -%>
+
 <tr>
   <td>
     <div>
@@ -19,7 +21,13 @@
         <%= format_money(membership_template.price) %>
       </div>
 
-      <% if membership_template.late_fee > 0 %>
+      <% if membership_template.registration_fee.positive? %>
+        <div class="text-sm text-neutral-content/75">
+          +<%= format_money(membership_template.registration_fee) %> registration fee
+        </div>
+      <% end %>
+
+      <% if membership_template.late_fee.positive? %>
         <div class="text-sm text-neutral-content/75">
           +<%= format_money(membership_template.late_fee) %> late fee
         </div>
@@ -31,9 +39,9 @@
   <td class="text-center">0</td>
   <td>
     <div class="flex items-center gap-2">
-      <button class="btn btn-sm btn-circle btn-secondary">
+      <%= link_to edit_membership_template_path(id: membership_template.id), class: "btn btn-sm btn-circle btn-secondary" do %>
         <%= icon(:pencil, suffix: "16-solid", class: "size-4") %>
-      </button>
+      <% end %>
       <button class="btn btn-sm btn-circle btn-error">
         <%= icon(:trash, suffix: "16-solid", class: "size-4") %>
       </button>

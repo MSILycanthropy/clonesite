@@ -1,0 +1,131 @@
+<%# locals: (membership_template:) -%>
+
+<%= form_with model: @membership_template do |f| %>
+  <div data-controller="visibility" data-visibility-hidden-value="false" class="space-y-4">
+    <div class="panel">
+      <div class="font-semibold text-lg mb-2">
+        Details
+      </div>
+
+      <div class="space-y-4">
+        <div class="panel !pt-3">
+          <div>
+            <span class="label required">
+              Type
+            </span>
+            <div class="join">
+              <% [ "full", "trial" ].each do |type| %>
+                <%= f.radio_button :trial, type == "trial", class: "join-item btn btn-sm", aria: { label: type.titleize } %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="panel !pt-3 flex-1">
+            <%= f.label :name, "Name", class: "label required" %>
+            <%= f.text_field :name, class: "input input-bordered w-full", required: true %>
+          </div>
+
+          <div class="panel min-w-80">
+            <span class="label required">
+              Billing
+            </span>
+            <div class="join">
+              <% MembershipTemplate.billing_types.keys.each do |billing_type| %>
+                <% data = billing_type == "free" ? { action: "visibility#hide" } : { action: "visibility#show" } %>
+                <% data[:action] += billing_type == "recurring" ? " visibility#showAlternate" : " visibility#hideAlternate" %>
+                <%= f.radio_button :billing_type, billing_type, class: "join-item btn btn-sm", aria: { label: t("billing_types.#{billing_type}") }, data: %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel !pt-3" data-visibility-target="container">
+      <div class="font-semibold text-lg mb-2">
+        Pricing
+      </div>
+
+      <div class="panel flex flex-wrap gap-8 items-center">
+        <div>
+          <%= f.label :price, "Price", class: "label required" %>
+          <div class="flex items-center gap-1">
+            <span><%= Money.current_currency.symbol %></span>
+            <%= f.number_field :price, step: "0.01", class: "input input-bordered w-20", required: true %>
+          </div>
+        </div>
+
+        <div data-visibility-target="alternate">
+          <span class="label required">Frequency</span>
+          <div class="flex gap-1 items-center">
+            <span>Every</span>
+            <%= f.number_field :recurring_billing_length, class: "input input-bordered max-w-11", required: true %>
+            <%= f.select :recurring_billing_interval, interval_select_options, {}, class: "select select-bordered" %>
+          </div>
+        </div>
+
+        <div>
+          <%= f.label :late_fee, "Late Fee", class: "label" %>
+          <div class="flex items-center gap-1">
+            <span><%= Money.current_currency.symbol %></span>
+            <%= f.number_field :late_fee, step: "0.01",  class: "input input-bordered w-20" %>
+          </div>
+        </div>
+
+        <div>
+          <%= f.label :registration_fee, "Registration Fee", class: "label" %>
+          <div class="flex items-center gap-1">
+            <span><%= Money.current_currency.symbol %></span>
+            <%= f.number_field :registration_fee, step: "0.01",  class: "input input-bordered w-20" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="font-semibold text-lg mb-2">
+        Duration
+      </div>
+
+      <div class="panel" data-controller="visibility">
+        <div class="join">
+          <% MembershipTemplate.duration_types.keys.each do |duration_type| %>
+            <% data = duration_type == "limited" ? { action: "visibility#show" } : { action: "visibility#hide" } %>
+            <%= f.radio_button :duration_type, duration_type, class: "join-item btn btn-sm", aria: { label: t("duration_types.#{duration_type}") }, data: %>
+          <% end %>
+        </div>
+
+        <div data-visibility-target="container">
+          <div class="flex gap-1 items-center mt-3">
+            <span>Every</span>
+            <%= f.number_field :term_length, class: "input input-bordered max-w-11" %>
+            <%= f.select :term_interval, interval_select_options, {}, class: "select select-bordered" %>
+          </div>
+
+          <div>
+            <%= f.label :end_behavior, class: "label required" %>
+
+            <%= f.select :end_behavior, options_for_select(MembershipTemplate.end_behaviors.keys.map { |e| [ t("end_behaviors.#{e}"), e ]}), {}, class: 'select select-bordered' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="font-semibold text-lg mb-2">
+        Access
+      </div>
+
+      <div class="panel">
+        TODO: Do this when programs and ranks exist
+      </div>
+    </div>
+  </div>
+
+  <div class="join mt-3 flex justify-end">
+    <%= link_to t('cancel'), :back, class: 'join-item btn btn-sm' %>
+    <%= f.button t('save'), class: 'join-item btn btn-sm btn-primary' %>
+  </div>
+<% end %>

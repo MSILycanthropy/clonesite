@@ -10,6 +10,4 @@ class School < ApplicationRecord
 
   has_many :school_affiliations, dependent: :destroy
   has_many :uesrs, through: :school_affiliations, dependent: :destroy
-
-  has_many :membership_templates
 end
