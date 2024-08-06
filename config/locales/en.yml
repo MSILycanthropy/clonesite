@@ -39,6 +39,7 @@ en:
     months: Month(s)
     years: Year(s)
     days: Day(s)
+    weeks: Week(s)
   end_behaviors:
     renew: Renew
     cancel: Cancel

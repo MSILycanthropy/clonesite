@@ -30,7 +30,7 @@
           <div class="flex gap-4">
             <div class="panel !pt-3 flex-1">
               <%= f.label :name, "Name", class: "label required" %>
-              <%= f.text_field :name, class: "input input-bordered w-full" %>
+              <%= f.text_field :name, class: "input input-bordered w-full", required: true %>
             </div>
 
             <div class="panel min-w-80">
@@ -59,7 +59,7 @@
             <%= f.label :price, "Price", class: "label required" %>
             <div class="flex items-center gap-1">
               <span><%= Money.current_currency.symbol %></span>
-              <%= f.number_field :price, step: "0.01", class: "input input-bordered w-20" %>
+              <%= f.number_field :price, step: "0.01", class: "input input-bordered w-20", required: true %>
             </div>
           </div>
 
@@ -67,13 +67,13 @@
             <span class="label required">Frequency</span>
             <div class="flex gap-1 items-center">
               <span>Every</span>
-              <%= f.number_field :recurring_billing_length, class: "input input-bordered max-w-11" %>
+              <%= f.number_field :recurring_billing_length, class: "input input-bordered max-w-11", required: true %>
               <%= f.select :recurring_billing_interval, interval_select_options, {}, class: "select select-bordered" %>
             </div>
           </div>
 
           <div>
-            <%= f.label :late_fee, "Late Fee", class: "label required" %>
+            <%= f.label :late_fee, "Late Fee", class: "label" %>
             <div class="flex items-center gap-1">
               <span><%= Money.current_currency.symbol %></span>
               <%= f.number_field :late_fee, step: "0.01",  class: "input input-bordered w-20" %>
@@ -81,7 +81,7 @@
           </div>
 
           <div>
-            <%= f.label :registration_fee, "Registration Fee", class: "label required" %>
+            <%= f.label :registration_fee, "Registration Fee", class: "label" %>
             <div class="flex items-center gap-1">
               <span><%= Money.current_currency.symbol %></span>
               <%= f.number_field :registration_fee, step: "0.01",  class: "input input-bordered w-20" %>
@@ -128,6 +128,11 @@
           TODO: Do this when programs and ranks exist
         </div>
       </div>
+    </div>
+
+    <div class="join mt-3 flex justify-end">
+      <%= link_to t('cancel'), :back, class: 'join-item btn btn-sm' %>
+      <%= f.button t('save'), class: 'join-item btn btn-sm btn-primary' %>
     </div>
   <% end %>
 </div>

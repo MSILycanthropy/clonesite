@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def interval_select_options
-    options = [ :months, :years, :days ].map { |i| [ t("interval_types.#{i}"), i ] }
+    options = [ :months, :weeks, :years, :days ].map { |i| [ t("interval_types.#{i}"), i ] }
 
     options_for_select(options)
   end
