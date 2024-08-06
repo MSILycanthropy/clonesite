@@ -28,7 +28,14 @@
 #       enabled: "ON"
 
 en:
-  billing_types:
-    recurring: Recurring
-    once: One Time
-    free: No Charge
+  recurring: Recurring
+  once: One Time
+  free: No Charge
+  ongoing: Ongoing
+  limited: Limited
+  months: Month(s)
+  years: Year(s)
+  days: Day(s)
+  renew: Renew
+  cancel: Cancel
+  convert: Convert

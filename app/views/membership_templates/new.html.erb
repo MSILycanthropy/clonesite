@@ -17,10 +17,10 @@
           <div class="panel !pt-3">
             <div>
               <span class="label required">
-                Trial
+                Type
               </span>
               <div class="join">
-                <% [ "individual", "trial" ].each do |type| %>
+                <% [ "full", "trial" ].each do |type| %>
                   <%= f.radio_button :trial, type == "trial", class: "join-item btn btn-sm", aria: { label: type.titleize } %>
                 <% end %>
               </div>
@@ -41,7 +41,7 @@
                 <% MembershipTemplate.billing_types.keys.each do |billing_type| %>
                   <% data = billing_type == "free" ? { action: "visibility#hide" } : { action: "visibility#show" } %>
                   <% data[:action] += billing_type == "recurring" ? " visibility#showAlternate" : " visibility#hideAlternate" %>
-                  <%= f.radio_button :billing_type, billing_type, class: "join-item btn btn-sm", aria: { label: t("billing_types.#{billing_type}") }, data: %>
+                  <%= f.radio_button :billing_type, billing_type, class: "join-item btn btn-sm", aria: { label: t(billing_type) }, data: %>
                 <% end %>
               </div>
             </div>
@@ -64,16 +64,16 @@
           </div>
 
           <div data-visibility-target="alternate">
-            <span class="label">Frequency</span>
+            <span class="label required">Frequency</span>
             <div class="flex gap-1 items-center">
               <span>Every</span>
               <%= f.number_field :recurring_billing_length, class: "input input-bordered max-w-11" %>
-              <%= f.select :recurring_billing_interval, [ "m", "y", "d" ], {}, class: "select select-bordered" %>
+              <%= f.select :recurring_billing_interval, interval_select_options, {}, class: "select select-bordered" %>
             </div>
           </div>
 
           <div>
-            <%= f.label :late_fee, "Late Fee", class: "label" %>
+            <%= f.label :late_fee, "Late Fee", class: "label required" %>
             <div class="flex items-center gap-1">
               <span><%= Money.current_currency.symbol %></span>
               <%= f.number_field :late_fee, step: "0.01",  class: "input input-bordered w-20" %>
@@ -81,7 +81,7 @@
           </div>
 
           <div>
-            <%= f.label :registration_fee, "Registration Fee", class: "label" %>
+            <%= f.label :registration_fee, "Registration Fee", class: "label required" %>
             <div class="flex items-center gap-1">
               <span><%= Money.current_currency.symbol %></span>
               <%= f.number_field :registration_fee, step: "0.01",  class: "input input-bordered w-20" %>
@@ -99,12 +99,22 @@
           <div class="join">
             <% MembershipTemplate.duration_types.keys.each do |duration_type| %>
               <% data = duration_type == "limited" ? { action: "visibility#show" } : { action: "visibility#hide" } %>
-              <%= f.radio_button :duration_type, duration_type, class: "join-item btn btn-sm", aria: { label: duration_type }, data: %>
+              <%= f.radio_button :duration_type, duration_type, class: "join-item btn btn-sm", aria: { label: t(duration_type) }, data: %>
             <% end %>
           </div>
 
           <div data-visibility-target="container">
-            content
+            <div class="flex gap-1 items-center mt-3">
+              <span>Every</span>
+              <%= f.number_field :term_length, class: "input input-bordered max-w-11" %>
+              <%= f.select :term_interval, interval_select_options, {}, class: "select select-bordered" %>
+            </div>
+
+            <div>
+              <%= f.label :end_behavior, class: "label required" %>
+
+              <%= f.select :end_behavior, options_for_select(MembershipTemplate.end_behaviors.keys.map { |e| [ t(e), e ]}), {}, class: 'select select-bordered' %>
+            </div>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ class MembershipTemplatesController < SchoolBaseController
   def index; end
 
   def new
-    @membership_template = Current.school.membership_templates.new
+    @membership_template = Current.school.membership_templates.new(price: nil, late_fee: nil, registration_fee: nil)
   end
 
   private

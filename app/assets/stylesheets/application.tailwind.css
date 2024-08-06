@@ -28,7 +28,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .required:after {
   content: "*";
 
-  @apply text-error;
+  @apply text-error text-xs;
 }
 
 [hidden] {
