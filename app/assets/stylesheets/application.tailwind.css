@@ -9,13 +9,28 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .panel {
-  @apply bg-base-300 rounded-3xl overflow-hidden p-4;
+  @apply bg-neutral rounded-3xl overflow-hidden p-4;
 }
 
 .panel .panel {
-  @apply bg-neutral rounded-xl p-4;
+  @apply bg-base-300 rounded-xl p-4;
 }
 
 .panel .panel .panel {
-  @apply bg-base-300 rounded p-4;
+  @apply bg-neutral rounded p-4;
+}
+
+.label {
+  @apply px-1 py-0 pb-1;
+  @apply justify-start gap-0.5;
+}
+
+.required:after {
+  content: "*";
+
+  @apply text-error text-xs;
+}
+
+[hidden] {
+  @apply !hidden;
 }

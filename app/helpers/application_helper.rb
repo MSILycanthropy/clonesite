@@ -17,6 +17,12 @@ module ApplicationHelper
     link_to name, path, role: :tab, class: classes
   end
 
+  def interval_select_options
+    options = [ :months, :weeks, :years, :days ].map { |i| [ t("interval_types.#{i}"), i ] }
+
+    options_for_select(options)
+  end
+
   private
 
   def path_from_controller?(path = nil)

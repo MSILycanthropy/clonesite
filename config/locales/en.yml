@@ -28,4 +28,18 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  billing_types:
+    recurring: Recurring
+    once: One Time
+    free: No Charge
+  duration_types:
+    ongoing: Ongoing
+    limited: Limited
+  interval_types:
+    months: Month(s)
+    years: Year(s)
+    days: Day(s)
+    weeks: Week(s)
+  end_behaviors:
+    renew: Renew
+    cancel: Cancel
