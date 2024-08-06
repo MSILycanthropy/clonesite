@@ -41,7 +41,7 @@
                 <% MembershipTemplate.billing_types.keys.each do |billing_type| %>
                   <% data = billing_type == "free" ? { action: "visibility#hide" } : { action: "visibility#show" } %>
                   <% data[:action] += billing_type == "recurring" ? " visibility#showAlternate" : " visibility#hideAlternate" %>
-                  <%= f.radio_button :billing_type, billing_type, class: "join-item btn btn-sm", aria: { label: t(billing_type) }, data: %>
+                  <%= f.radio_button :billing_type, billing_type, class: "join-item btn btn-sm", aria: { label: t("billing_types.#{billing_type}") }, data: %>
                 <% end %>
               </div>
             </div>
@@ -99,7 +99,7 @@
           <div class="join">
             <% MembershipTemplate.duration_types.keys.each do |duration_type| %>
               <% data = duration_type == "limited" ? { action: "visibility#show" } : { action: "visibility#hide" } %>
-              <%= f.radio_button :duration_type, duration_type, class: "join-item btn btn-sm", aria: { label: t(duration_type) }, data: %>
+              <%= f.radio_button :duration_type, duration_type, class: "join-item btn btn-sm", aria: { label: t("duration_types.#{duration_type}") }, data: %>
             <% end %>
           </div>
 
@@ -113,9 +113,19 @@
             <div>
               <%= f.label :end_behavior, class: "label required" %>
 
-              <%= f.select :end_behavior, options_for_select(MembershipTemplate.end_behaviors.keys.map { |e| [ t(e), e ]}), {}, class: 'select select-bordered' %>
+              <%= f.select :end_behavior, options_for_select(MembershipTemplate.end_behaviors.keys.map { |e| [ t("end_behaviors.#{e}"), e ]}), {}, class: 'select select-bordered' %>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="font-semibold text-lg mb-2">
+          Access
+        </div>
+
+        <div class="panel">
+          TODO: Do this when programs and ranks exist
         </div>
       </div>
     </div>

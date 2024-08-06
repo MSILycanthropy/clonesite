@@ -28,14 +28,17 @@
 #       enabled: "ON"
 
 en:
-  recurring: Recurring
-  once: One Time
-  free: No Charge
-  ongoing: Ongoing
-  limited: Limited
-  months: Month(s)
-  years: Year(s)
-  days: Day(s)
-  renew: Renew
-  cancel: Cancel
-  convert: Convert
+  billing_types:
+    recurring: Recurring
+    once: One Time
+    free: No Charge
+  duration_types:
+    ongoing: Ongoing
+    limited: Limited
+  interval_types:
+    months: Month(s)
+    years: Year(s)
+    days: Day(s)
+  end_behaviors:
+    renew: Renew
+    cancel: Cancel
