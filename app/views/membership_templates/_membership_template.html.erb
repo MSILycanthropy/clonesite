@@ -1,6 +1,6 @@
 <%# locals: (membership_template:) -%>
 
-<tr>
+<tr id="<%= dom_id(membership_template) %>">
   <td>
     <div>
       <%= membership_template.name %>
@@ -42,12 +42,12 @@
       <%= link_to edit_membership_template_path(id: membership_template.id), class: "btn btn-sm btn-circle btn-secondary" do %>
         <%= icon(:pencil, suffix: "16-solid", class: "size-4") %>
       <% end %>
-      <button class="btn btn-sm btn-circle btn-error">
+      <%= button_to membership_template_path(id: membership_template.id), method: :delete, class: "btn btn-sm btn-circle btn-error" do %>
         <%= icon(:trash, suffix: "16-solid", class: "size-4") %>
-      </button>
-      <button class="btn btn-sm btn-circle btn-accent">
+      <% end %>
+      <%= link_to new_membership_template_path(id: membership_template.id), class: "btn btn-sm btn-circle btn-accent" do %>
         <%= icon(:document_duplicate, suffix: "16-solid", class: "size-4") %>
-      </button>
+      <% end %>
     </div>
   </td>
 </tr>

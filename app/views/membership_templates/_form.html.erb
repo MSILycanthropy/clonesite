@@ -1,7 +1,10 @@
 <%# locals: (membership_template:) -%>
 
-<%= form_with model: @membership_template do |f| %>
-  <div data-controller="visibility" data-visibility-hidden-value="false" class="space-y-4">
+<%= form_with model: membership_template do |f| %>
+  <div data-controller="visibility"
+       data-visibility-hidden-value="<%= membership_template.billing_free? %>"
+       data-visibility-alternate-hidden-value="<%= !membership_template.billing_recurring? %>"
+       class="space-y-4">
     <div class="panel">
       <div class="font-semibold text-lg mb-2">
         Details
