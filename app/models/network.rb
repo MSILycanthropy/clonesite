@@ -9,4 +9,8 @@ class Network < ApplicationRecord
 
   has_many :schools, dependent: :destroy
   has_many :membership_templates, dependent: :destroy
+
+  def allows_changes?
+    true
+  end
 end
