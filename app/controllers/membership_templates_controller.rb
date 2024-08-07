@@ -1,4 +1,4 @@
-class MembershipTemplatesController < SchoolBaseController
+class MembershipTemplatesController < AuthenticatedController
   layout "settings"
 
   before_action :set_membership_templates, only: :index

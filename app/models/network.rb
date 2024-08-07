@@ -5,6 +5,8 @@ class Network < ApplicationRecord
 
   enum :status, [ "active", "inactive" ].index_by(&:itself)
 
+  has_many :members, dependent: :destroy
+
   has_many :schools, dependent: :destroy
   has_many :membership_templates, dependent: :destroy
 end

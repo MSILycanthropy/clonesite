@@ -62,6 +62,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
   create_table "networks", force: :cascade do |t|
     t.string "name", null: false
     t.string "status", default: "active", null: false
+    t.string "currency", limit: 3, default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -105,7 +106,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
     t.string "subdomain", null: false
     t.string "timezone", null: false
     t.string "status", default: "active", null: false
-    t.string "currency", limit: 3, default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "network_id"

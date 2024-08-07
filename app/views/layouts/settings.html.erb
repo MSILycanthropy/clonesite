@@ -16,4 +16,8 @@
   </header>
 <% end %>
 
-<%= render template: "layouts/school" %>
+<% if accessing_network? %>
+  <%= render template: "layouts/network" %>
+<% else %>
+  <%= render template: "layouts/school" %>
+<% end %>
