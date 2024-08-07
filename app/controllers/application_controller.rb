@@ -7,13 +7,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def with_timezone
-    Time.use_zone(Current.school.timezone) { yield }
-  end
-
-  def with_currency
-    currency = Money::Currency.new(Current.school.currency)
-
-    Money.with_currency(currency) { yield }
+  def render_unauthorized
+    render file: "public/404.html", status: :unauthorized, layout: false
   end
 end

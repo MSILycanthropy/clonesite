@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   resources :membership_templates
 
+  constraints subdomain: "admin" do
+    root "schools#index", as: :admin_root
+  end
+
   # Defines the root path route ("/")
   root "dashboard#show"
 end

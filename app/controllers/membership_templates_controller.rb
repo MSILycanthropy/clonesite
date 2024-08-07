@@ -1,4 +1,4 @@
-class MembershipTemplatesController < SchoolBaseController
+class MembershipTemplatesController < AuthenticatedController
   layout "settings"
 
   before_action :set_membership_templates, only: :index
@@ -6,11 +6,11 @@ class MembershipTemplatesController < SchoolBaseController
   def index; end
 
   def new
-    @membership_template = MembershipTemplate.new(price: nil, late_fee: nil, registration_fee: nil)
+    @membership_template = authorize MembershipTemplate.new(price: nil, late_fee: nil, registration_fee: nil)
   end
 
   def create
-    @membership_template = MembershipTemplate.build(membership_template_params)
+    @membership_template = authorize MembershipTemplate.build(membership_template_params)
 
     if @membership_template.save!
       redirect_to(membership_templates_path)
@@ -22,11 +22,11 @@ class MembershipTemplatesController < SchoolBaseController
   end
 
   def edit
-    @membership_template = MembershipTemplate.find(params[:id])
+    @membership_template = authorize MembershipTemplate.find(params[:id])
   end
 
   def update
-    @membership_template = MembershipTemplate.find(params[:id])
+    @membership_template = authorize MembershipTemplate.find(params[:id])
     @membership_template.assign_attributes(membership_template_params)
 
     if @membership_template.save!

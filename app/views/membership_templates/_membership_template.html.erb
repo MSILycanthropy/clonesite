@@ -39,14 +39,20 @@
   <td class="text-center">0</td>
   <td>
     <div class="flex items-center gap-2">
-      <%= link_to edit_membership_template_path(id: membership_template.id), class: "btn btn-sm btn-circle btn-secondary" do %>
-        <%= icon(:pencil, suffix: "16-solid", class: "size-4") %>
+      <% if policy(membership_template).edit? %>
+        <%= link_to edit_membership_template_path(id: membership_template.id), class: "btn btn-sm btn-circle btn-secondary" do %>
+          <%= icon(:pencil, suffix: "16-solid", class: "size-4") %>
+        <% end %>
       <% end %>
-      <%= button_to membership_template_path(id: membership_template.id), method: :delete, class: "btn btn-sm btn-circle btn-error" do %>
-        <%= icon(:trash, suffix: "16-solid", class: "size-4") %>
+      <% if policy(membership_template).destroy? %>
+        <%= button_to membership_template_path(id: membership_template.id), method: :delete, class: "btn btn-sm btn-circle btn-error" do %>
+          <%= icon(:trash, suffix: "16-solid", class: "size-4") %>
+        <% end %>
       <% end %>
-      <%= link_to new_membership_template_path(id: membership_template.id), class: "btn btn-sm btn-circle btn-accent" do %>
-        <%= icon(:document_duplicate, suffix: "16-solid", class: "size-4") %>
+      <% if policy(membership_template).new? %>
+        <%= link_to new_membership_template_path(id: membership_template.id), class: "btn btn-sm btn-circle btn-accent" do %>
+          <%= icon(:document_duplicate, suffix: "16-solid", class: "size-4") %>
+        <% end %>
       <% end %>
     </div>
   </td>

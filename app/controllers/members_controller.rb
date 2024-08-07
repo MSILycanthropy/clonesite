@@ -1,4 +1,4 @@
-class MembersController < SchoolBaseController
+class MembersController < AuthenticatedController
   before_action :set_members, only: :index
   before_action :set_member, only: [ :show, :edit, :update ]
 
@@ -25,10 +25,18 @@ class MembersController < SchoolBaseController
   end
 
   def set_members
-    @members = Current.school.members
+    @members = if accessing_network?
+      Current.network.members
+    else
+      Current.school.members
+    end
   end
 
   def set_member
-    @member = Current.school.members.find(params[:id])
+    @member = if accessing_network?
+      Current.network.members
+    else
+      Current.school.members
+    end.find(params[:id])
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
+ActiveRecord::Schema[8.0].define(version: 2024_08_07_013828) do
   create_table "email_addresses", force: :cascade do |t|
     t.string "address", null: false
     t.string "emailable_type", null: false
@@ -62,6 +62,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
   create_table "networks", force: :cascade do |t|
     t.string "name", null: false
     t.string "status", default: "active", null: false
+    t.string "currency", limit: 3, default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -105,7 +106,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
     t.string "subdomain", null: false
     t.string "timezone", null: false
     t.string "status", default: "active", null: false
-    t.string "currency", limit: 3, default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "network_id"
@@ -129,6 +129,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_31_014336) do
     t.integer "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role", default: "staff"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
     t.index ["network_id"], name: "index_users_on_network_id"
   end
