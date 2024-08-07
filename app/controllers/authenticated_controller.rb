@@ -22,10 +22,6 @@ class AuthenticatedController < ApplicationController
 
   private
 
-  def render_unauthorized
-    render file: "public/404.html", status: :unauthorized, layout: false
-  end
-
   def determine_layout
     if accessing_network?
       "network"

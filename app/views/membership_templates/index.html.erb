@@ -2,10 +2,12 @@
   <div class="text-base-content text-xl pb-3 flex justify-between">
     <div>Membership Templates</div>
 
-    <%= link_to new_membership_template_path, class: "btn btn-sm btn-primary" do %>
-      Add New
+    <% if policy(MembershipTemplate).new? %>
+      <%= link_to new_membership_template_path, class: "btn btn-sm btn-primary" do %>
+        Add New
 
-      <%= icon(:plus, suffix: "16-solid", class: "size-4") %>
+        <%= icon(:plus, suffix: "16-solid", class: "size-4") %>
+      <% end %>
     <% end %>
   </div>
 
