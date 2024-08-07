@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Roles
+
   belongs_to_tenant :network
 
   has_secure_password

@@ -17,7 +17,7 @@ class ApplicationPolicy
   end
 
   def create?
-    false
+    user.at_least_network_admin?
   end
 
   def new?
@@ -25,7 +25,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    user.at_least_network_admin?
   end
 
   def edit?
@@ -33,7 +33,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    user.at_least_network_admin?
   end
 
   class Scope

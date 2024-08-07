@@ -1,9 +1,9 @@
 class MembershipTemplatePolicy < ApplicationPolicy
-  def new?
-    false
+  def create?
+    super
   end
 
-  def edit?
-    new?
+  def update?
+    create?
   end
 end
