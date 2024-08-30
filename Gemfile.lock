@@ -307,7 +307,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    shopify-money (2.2.2)
+    shopify-money (3.0.0)
     simply_the_tenant (0.2.1)
       rails (>= 7.1)
     smart_properties (1.17.0)
